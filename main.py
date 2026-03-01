@@ -31,6 +31,7 @@ class Player (Sprite):
     def __init__(self, speed, x, y, w, h, img):
         super().__init__(x, y, w, h, img)
         self.speed = speed
+        self.rect.h = h
 
     def update(self):
         pressed_keys = key.get_pressed()
@@ -42,9 +43,7 @@ class Player (Sprite):
     def shoot(self):
         bullet = Bullet(1, self.rect.x, self.rect.y, 10, 15, 'bullet.png')
         bullets.add(bullet)
-
-        
-
+     
 class Bullet (Sprite):
     def __init__(self, speed, x, y, w, h, img):
         super().__init__(x, y, w, h, img)
@@ -66,14 +65,15 @@ class TextArea (sprite.Sprite):
     def draw_text(self, x, y):
         draw.rect(screen, self.color, self.rect)
         screen.blit(self.image, (self.rect.x + x, self.rect.y + y))
-        
-player = Player(5, 0, 680, 40, 40, 'player.png')
+
+player = Player(8, 0, 660 , 60, 60, 'player.png') 
 group = sprite.Group()
 bullets = sprite.Group()
 
 counter = 0
 while True:
-    bullets.update()
+    for bullet in range(100):
+        pass
     player.update()
     if counter > 60:
         enemy_w = 40
